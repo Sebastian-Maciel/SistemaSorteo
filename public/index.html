@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>MEGA SORTEO</h1>
+    </header>
+    <main class="main">
+        
+        <div class="card">
+            <div class="img"></div>
+            <div class="description"><span id="bold">Descripción</span> <span>Breve descripción del sorteo: ipsum dolor sit amet consectetur adipisicing elit.</span> <span id="bold">Fecha del sorteo</span>
+            <span>24 de noviembre del 2021</span>
+            <span id="bold">Precio por número</span>
+            <span>$30.00</span>
+            </div>
+        </div>
+        <boletos-sorteo></boletos-sorteo>
+
+        
+       
+    </main>
+    <script>        
+        const btn = document.querySelector('.btn2');
+        const numberTickets = 120;
+        const msg = document.querySelector('.msg')
+        // const gridContainer = document.querySelector('.grid-container')
+
+        // const tickets = [true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, true, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false];
+
+        const price = 30;
+        
+
+        // for (let i = 0; i <tickets.length; i++){
+        //     if(tickets[i]){
+        //         let div = document.createElement('div');
+        //         div.className = `grid-item no_available`;
+        //         gridContainer.appendChild(div);
+        //     }
+        //     else {
+        //         let div = document.createElement('div');
+        //         div.innerHTML = `${i+1}`;
+        //         div.className = `grid-item item${i+1}`;
+        //         gridContainer.appendChild(div);
+                
+        //     }      
+        // }
+
+        // gridContainer.addEventListener('click',(e)=>{
+        //     if(!e.target.classList.contains(`item${e.srcElement.innerHTML}`)){
+        //         return
+        //     }
+        //     console.log(e.srcElement.innerHTML);
+        //     const i = e.srcElement.innerHTML;
+        //     e.target.classList.toggle('active');
+            
+        //     if(e.target.classList.contains('active')){
+        //         let cont = document.createElement('div');
+        //         let span = document.createElement('span');
+        //         let span2 = document.createElement('span');
+        //         span.innerHTML = `Número # ${i}`;
+        //         span2.innerHTML = "$30.00";
+        //         let div1 = document.createElement('div');
+        //         div1.className = 'count1';
+        //         div1.id=`count-${i}`;
+        //         div1.appendChild(span);
+        //         div1.appendChild(span2);
+        //         document.getElementById('count').appendChild(div1);
+        //     }
+        //     else {
+        //         const id = document.getElementById(`count-${i}`);
+        //         document.getElementById('count').removeChild(id);
+        //     }
+            
+        //     msg.textContent="$"+document.getElementById('count').childElementCount*price+".00"
+        
+        // });
+
+        // btn.addEventListener('click',(event) => {
+        //     console.log("hello")
+        // })
+        
+    </script>
+</body>
+
+<script src="./BoletosSorteoComponente/boletosSorteo.js"></script>
+</html>
+
+<!-- for (let i = 0; i <tickets.length; i++){
+    if(tickets[i]){
+        let div = document.createElement('div');
+        div.className = `grid-item no_available`;
+        document.querySelector('.grid-container').appendChild(div);
+    }
+    else {
+        let div = document.createElement('div');
+        div.innerHTML = `${i+1}`;
+        div.className = `grid-item item${i+1}`;
+        document.querySelector('.grid-container').appendChild(div);
+        div.addEventListener('click',(event)=>{
+            div.classList.toggle('active');
+            
+            if(div.classList.contains('active')){
+                let cont = document.createElement('div');
+                let span = document.createElement('span');
+                let span2 = document.createElement('span');
+                span.innerHTML = `Número # ${i+1}`;
+                span2.innerHTML = "$30.00";
+                let div1 = document.createElement('div');
+                div1.className = 'count1';
+                div1.id=`count-${i+1}`;
+                div1.appendChild(span);
+                div1.appendChild(span2);
+                document.getElementById('count').appendChild(div1);
+            }
+            else {
+                const id = document.getElementById(`count-${i+1}`);
+                document.getElementById('count').removeChild(id);
+            }
+            
+            msg.textContent="$"+document.getElementById('count').childElementCount*price+".00"
+            
+        });
+    }      
+} -->
