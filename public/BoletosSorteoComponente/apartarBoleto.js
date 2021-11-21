@@ -89,7 +89,7 @@ class ApartarBoletos extends HTMLElement {
     }
     apartarBoletos(persona, boletos) {
         fetch('/api/boleto/', {
-            method: 'PUT',
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             },
