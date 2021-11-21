@@ -120,35 +120,7 @@ class BoletosSorteo extends HTMLElement {
             </div>
         </div>
     </div>
-
-    <div class="monto">
-            <div><h3 style="text-align: center;">NÚMEROS SELECCIONADOS</h2></div>
-            <div class="count">
-                <div class="countdiv" id="count">
-                    
-                </div>
-                <hr>
-                <div class="count1">
-                    <span>TOTAL</span>
-                    <div class="msg">$0.00</div>
-                </div>
-            </div>
-            <div class="conditions">
-                <input type="checkbox" >
-                <div>Acepto recibir recordatorios  periódicos al correo ligado a mi cuenta sobre el apartado de números. *</div>
-            </div>
-            <div class="buttons">
-                <button class="btn btn1">Apartar</button>
-                <button class="btn btn2">Pagar</button>
-            </div>
-            <template>
-                <div class="count1">
-                    <span>Número #1</span>
-                    <span></span>
-                </div>
-            </template>
-        </div>
-        </div>
+    
     `
 
     }

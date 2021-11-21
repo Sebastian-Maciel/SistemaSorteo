@@ -89,7 +89,6 @@ module.exports = {
     getBoleto,
     eliminarBoleto,
     actualizarBoleto,
-
 };
 
 

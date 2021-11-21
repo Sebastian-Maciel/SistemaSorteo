@@ -46,7 +46,7 @@ const getBoletos = () => {
 
 const apartarBoleto = (idBoleto, persona) => {
     let boleto= getBoleto(idBoleto);
-    boleto.estadoBoleto= "APARTADO";
+    boleto.estadoBoleto = "APARTADO";
     boleto.persona={
         nombre: persona.nombre,
         correo: persona.correo,
