@@ -6,6 +6,7 @@ class BoletosSorteo extends HTMLElement {
 
   connectedCallback() {
     let sorteoId = this.getAttribute("sorteoId");
+    let precioSorteo 
     this.attachShadow({ mode: "open" });
     this.#render();
     this.#cargarBoletos(sorteoId);
@@ -107,10 +108,7 @@ class BoletosSorteo extends HTMLElement {
         this.shadowRoot.getElementById("count").removeChild(id);
       }
       console.log(listaNumeros);
-      msg.textContent =
-        "$" +
-        this.shadowRoot.getElementById("count").childElementCount * precio +
-        ".00";
+      msg.textContent = "$" + this.shadowRoot.getElementById('count').childElementCount * precio + ".00"
     });
 
     const botonApartar = this.shadowRoot.querySelector("#btnApartar");
@@ -133,14 +131,6 @@ class BoletosSorteo extends HTMLElement {
     let estado = this.shadowRoot.querySelector("#estado");
     let boletos = [];
 
-    var regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
-    var name = document.getElementById("nom").value;
-    if (!regName.test(name)) {
-      alert("Invalid name given.");
-    } else {
-      alert("Valid name given.");
-    }
-
     if (checkbox.checked) {
       nums.forEach((num) => {
         fetch(`api/boleto/`, {
@@ -161,7 +151,7 @@ class BoletosSorteo extends HTMLElement {
               nombre: nombre.value,
               correo: correo.value,
               direccion: direccion.value,
-              numTelefono: numero.value,
+              numTelefono: String(numero.value),
               ciudad: ciudad.value,
               estado: estado.value,
             },
@@ -170,11 +160,13 @@ class BoletosSorteo extends HTMLElement {
           .then((response) => response.json())
           .then((json) => {
             boletos.push(json.bol.id);
+            this.#actualizarSorteo("6195d546e8db7ac7226fccbb", json.bol.id);
           })
           .catch(function (error) {
             console.warn("Something went wrong.", error);
           });
       });
+      alert('Apartado con exito');
     } else {
       nums.forEach((num) => {
         fetch(`api/boleto/`, {
@@ -200,14 +192,11 @@ class BoletosSorteo extends HTMLElement {
       });
     }
 
-    const sorteo = this.#getSorteo("6195d546e8db7ac7226fccbb");
-    console.log(sorteo);
-    this.#actualizarSorteo(sorteo.data._id, boletos);
   }
 
-  #actualizarSorteo(sorteoId, boletos) {
+  #actualizarSorteo(id, boletos) {
     console.log("hola: ", boletos);
-    fetch(`api/sorteo/${sorteoId}`, {
+    fetch(`api/sorteo/${id}`, {
       method: "PUT",
       headers: {
         headers: {
@@ -215,7 +204,7 @@ class BoletosSorteo extends HTMLElement {
         },
       },
       body: JSON.stringify({
-        boletos: boletos,
+        boletos: [boletos],
       }),
     })
       .then((response) => response.json())
@@ -291,12 +280,12 @@ class BoletosSorteo extends HTMLElement {
     <div class="bg-modal">
     <div class="modal-content">
         <div class="close">x</div>
-            <input type="text" id="nombre" placeholder="Nombre completo">
-            <input type="text" id="correo" placeholder="Correo">
-            <input type="text" id="direccion" placeholder="Dirección">
-            <input type="text" id="numero" placeholder="Número telefónico">
-            <input type="text" id="ciudad" placeholder="Ciudad">
-            <input type="text" id="estado" placeholder="Estado">
+            <input type="text" id="nombre" placeholder="Nombre completo" size="100" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" />
+            <input type="email" id="correo" placeholder="Correo" size="100">
+            <input type="text" id="direccion" placeholder="Dirección" size="80">
+            <input type="number" id="numero" placeholder="Número telefónico" size="10">
+            <input type="text" id="ciudad" placeholder="Ciudad" size="50" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)">
+            <input type="text" id="estado" placeholder="Estado" size="50" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)">
     </div>
 </div>
         <div>
@@ -322,7 +311,7 @@ class BoletosSorteo extends HTMLElement {
             <button class="btn btn2">Pagar</button>
         </div>
         <template>
-            <div class="count1">
+            <div class="count1"></div>
                 <span>Número #1</span>
                 <span></span>
             </div>
