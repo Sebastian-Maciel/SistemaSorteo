@@ -1,10 +1,10 @@
 const sorteo = require("../modelos/Sorteo");
-const { crearBoletos } = require("./boletoController");
-const { getBoleto } = require("./boletoController");
+
+// const { getBoleto } = require("./boletoController");
 
 const guardarSorteo = (request, response) => {
   const { numMin, numMax } = request.body;
-  const boletos = crearBoletos(numMin, numMax);
+  boletos = '';
   const sort = new sorteo({
     ...request.body,
     boletos,
@@ -72,26 +72,24 @@ const eliminarSorteo = (req, res) => {
   });
 };
 
+
+
 const actualizarSorteo = (req, res) => {
-  sorteo.findByIdAndUpdate(
-    { _id: req.params.id },
-    req.body,
-    { new: true },
-    (err, sort) => {
+  sorteo.findByIdAndUpdate(req.params.id, req.body, (err, sort) => {
       if (err) {
-        res.status(400).json({
-          status: "error",
-          message: `Error al actualizar el sorteo: ${err}`,
-        });
+          res.status(400).json({
+              status: 'error',
+              message: `Error al actualizar el sorteo: ${err}`,
+          });
       } else {
-        res.status(200).json({
-          status: "success",
-          data: sort,
-        });
+          res.status(200).json({
+              status: 'success',
+              data: sort,
+          });
       }
-    }
-  );
+  });
 };
+
 
 const getBoletosPorSorteo = (req, res) => {
   sorteo.findById(req.params.id, (err, sorteo) => {
@@ -116,6 +114,8 @@ const getBoletosPorSorteo = (req, res) => {
     }
   });
 };
+
+
 
 module.exports = {
   guardarSorteo,

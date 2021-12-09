@@ -1,22 +1,23 @@
 const boleto = require("../modelos/boleto");
+const { actualizarSorteo } = require("./sorteoController");
 
-const crearBoletos = (numMin, numMax) => {
-    const boletos = [];
-    for (let i = numMin; i <= numMax; i++) {
-        const bol = new boleto({
-            numero: i,
-            comprobantePago: '',
-            tipoPago: '',
-            estadoBoleto: 'LIBRE',
-        });
-        bol.save((err) => {
-            if (err) {
-                throw new Error(err.message);
-            } 
-        });
-        boletos.push(bol);
-    }
-    return boletos;
+const crearBoleto = (req, res) => {
+    const bol = new boleto({
+        ...req.body,
+    });
+
+    bol.save((err) => {
+        if (err) {
+          res.status(400).json({
+            status: "error",
+            error: err,
+          });
+        } else
+          res.status(201).json({
+            status: "success",
+            bol,
+          });
+      });
 };
 
 const getBoletos = (req, res) => {
@@ -84,7 +85,7 @@ const actualizarBoleto = (req, res) => {
 };
 
 module.exports = {
-    crearBoletos,
+    crearBoleto,
     getBoletos,
     getBoleto,
     eliminarBoleto,

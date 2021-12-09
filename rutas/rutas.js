@@ -5,16 +5,17 @@ const boleto = require('../controladores/boletoController');
 const router = express.Router();
 
 //sorteo
-router.put('/sorteo', sorteo.guardarSorteo);
+router.post('/sorteo', sorteo.guardarSorteo);
 router.get('/sorteo/:id', sorteo.getSorteo);
 router.get('/sorteos', sorteo.getSorteos);
 router.get('/sorteoboletos/:id', sorteo.getBoletosPorSorteo);
 router.delete('/sorteo/:id', sorteo.eliminarSorteo);
-router.post('/sorteo/:id', sorteo.actualizarSorteo);
+router.put('/sorteo/:id', sorteo.actualizarSorteo);
 
 
 //boleto
-router.post('/boleto/:id', boleto.actualizarBoleto);
+router.post('/boleto/', boleto.crearBoleto);
+router.put('/boleto/:id', boleto.actualizarBoleto);
 router.get('/boletos', boleto.getBoletos);
 router.get('/boleto/:id', boleto.getBoleto);
 
